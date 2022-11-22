@@ -3,7 +3,7 @@ import AuthApi from "./AuthApi.js";
 import CircularApi from "./CircularApi.js";
 import UserApi from "./UserApi.js";
 import StaffApi from "./StaffApi.js";
-import MemoApi from "./MemoApi";
+import MemoApi from "./MemoApi.js";
 const router = Router();
 
 //const auth = passport.authenticate("jwt", { session: false });

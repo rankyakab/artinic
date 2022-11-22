@@ -1,4 +1,4 @@
-import Circular from "../models/Circular";
+import Circular from "../models/Circular.js";
 
 export const index = async (req, res) => {
   const circular =  await Circular.find({});

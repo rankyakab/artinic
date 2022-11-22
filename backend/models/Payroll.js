@@ -17,4 +17,4 @@ const payrollSchema = new Schema(
  
 );
 
-export default new mongoose.model("Memo", payrollSchema);
+export default new mongoose.model("Payroll", payrollSchema);

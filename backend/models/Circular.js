@@ -16,4 +16,4 @@ const circularSchema = new Schema(
  
 );
 
-export default new mongoose.model("Memo", circularSchema);
+export default new mongoose.model("Circular", circularSchema);
