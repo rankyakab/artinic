@@ -9,7 +9,10 @@ const staffSchema = new Schema(
     lastName: { type: String, required: ["Last name field is required"] },
     middleName: { type: String, required: ["Middle name field is required"] },
     homeAddress: { type: String, required: ["Home Address field is required"] },
+    staffImage: { type: String, required: ["Phone number field is required"] },
+
     phoneNumber: { type: String, required: ["Phone number field is required"] },
+    gender: { type: String, required: ["Gender number field is required"] },
     personalEmail: {type: mongoose.SchemaTypes.Email, required: true},
     ipPhone: { type: String, required: ["Last name field is required"] },
     employmentType: { type: Date, default: new Date() },
