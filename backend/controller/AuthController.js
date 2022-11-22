@@ -20,10 +20,9 @@ export const register = async (req, res) => {
   }
 
   // hash the password
-  const saltRounds = 10;
-  const salt = await bcrypt.genSaltSync(saltRounds);
+  const salt = await bcrypt.genSaltSync(process.env.SALT_ROUNDS);
   const hashedPassword = await bcrypt.hashSync(password, salt);
-
+  const real = req.body;
   const user = await User({
     email,
     password: hashedPassword,
@@ -40,7 +39,7 @@ export const login = async (req, res) => {
 
   const user = await User.findOne({ email });
   if (!user) {
-    res.status(406).json({ message: "credentials not found" });
+    res.status(406).json({ message: "User credentials not found" });
     return;
   }
 

@@ -45,7 +45,11 @@ export const create = async (req, res) => {
 
 
 export const destroy = async (req, res) => {
-  await User.findOneAndDelete({ _id: req.params._id });
+  await User.findOneAndDelete({ _id: req.params.id });
   res.json({ message: "success" });
 };
 
+export const patch = async (req, res) => {
+  await User.updateOne({ _id: req.params.id }, {$set: req.body});
+  res.json({ message: "success" });
+};
