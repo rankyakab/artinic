@@ -13,6 +13,7 @@ router.post(
     
     UserController.create
   );
-  router.delete("/:id", UserController.destroy);
+router.delete("/:id", UserController.destroy);
+router.patch("/:id", UserController.patch);
   
 export default router;

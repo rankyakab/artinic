@@ -9,4 +9,13 @@ router.get(
   StaffController.index
 );
 
+router.post(
+  "/create",
+  
+  StaffController.create
+);
+
+router.patch("/:id", StaffController.patch);
+router.delete("/:id", StaffController.destroy);
+
 export default router;

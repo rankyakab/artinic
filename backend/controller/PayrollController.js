@@ -15,7 +15,7 @@ export const create = async (req, res) => {
   //}
     const payroll = await Payroll(res.body);
     await payroll.save();
-    res.status(201).json({ message: "Success",payroll  });
+    res.status(201).json({ message: "Success",payroll });
   };
   
   

@@ -3,14 +3,20 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
-    firstName: { type: String, required: ["First name field is required"] },
-    lastName: { type: String, required: ["Last name field is required"] },
     email: { type: String, required: ["Email field is required"] },
     password: { type: String, required: ["Password field is required"] },
-    role: { type: String, required: ["Email field is required"] },
-    department: [{ label: String, icon: String }],
+    role: { type: String, required: ["Role field is required"] },
+    deletedAt: {type: Boolean, default:false}
+    
   },
   { timestamps: true }
 );
+userSchema.pre('find', function() {
+  this.where({ deletedAt: false });
+});
+
+userSchema.pre('findOne', function() {
+  this.where({ isDeleted: false });
+});
 
 export default new mongoose.model("User", userSchema);

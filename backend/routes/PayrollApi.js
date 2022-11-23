@@ -1,18 +1,12 @@
 import { Router } from "express";
 //import passport from "passport";
-import * as MemoController from "../controller/MemoController.js";
+import * as PayrollController from "../controller/PayrollController.js";
 const router = Router();
 //passport.authenticate("jwt", { session: false })
 router.get(
   "/",
   
-  MemoController.index
+  PayrollController.index
 );
-router.post(
-    "/create",
-    
-    MemoController.create
-  );
-  
 
 export default router;

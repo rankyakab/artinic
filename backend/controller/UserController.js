@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import User from "../models/User.js";
 
 export const index = async (req, res) => {
@@ -5,51 +6,58 @@ export const index = async (req, res) => {
   res.json({ users });
 };
 
-export const indexs = async (req, res) => {
-  const demo = await User.aggregate([
-    {
-      $match: { user_id: req.user._id },
-    },
-    {
-      $group: {
-        _id: { $month: "$date" },
-        transactions: {
-          $push: {
-            amount: "$amount",
-            description: "$description",
-            date: "$date",
-            type: "$type",
-            _id: "$_id",
-          },
-        },
-        totalExpenses: { $sum: "$amount" },
-      },
-    },
-    { $sort: { _id: 1 } },
-  ]);
-  res.json({ data: demo });
-};
+
 
 export const create = async (req, res) => {
-  //const { amount, description, date, category_id } = req.body;
-  const user = new User({
-    firstName: "ranky",
-    lastName: "akab",
-    email: "rankyakabs@gmail.com",
-    password: "confirmation password",
-    department: [{ label: "management", icon: "bolla" }],
-  });
+   
+    const { email, password, role, deletedAt } = req.body;
+
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(406).json({ message: "User already exists." });
+    return;
+  }
+
+  
+ //const salt = await bcrypt.genSaltSync(10); 
+ //const hashedPassword = await bcrypt.hashSync(password, salt);
+ 
+  
+ const user = await new User({
+  
+  email,
+  password,
+  role,
+  deletedAt
+ });
   await user.save();
-  res.json({ message: "Success",user  });
+  //res.status(201).json({ message: "user is created",user });
+  console.log(req.body)
+  res.status(201).json({ message: "user is created",user });
+
 };
 
 
 export const destroy = async (req, res) => {
+  const userExists = await User.findOne({ _id: req.params.id});
+  //If user is not found
+  if (!userExists) {
+    res.status(406).json({ message: "User already Deleted." });
+    return;
+  }
+ //if user is found
   await User.findOneAndDelete({ _id: req.params.id });
   res.json({ message: "success" });
 };
 
 export const patch = async (req, res) => {
+
+  const userExists = await User.findOne({ _id: req.params.id });
+  if (!userExists) {
+    res.status(404).json({ message: "User do not exists." });
+    return;
+  }
+
   await User.updateOne({ _id: req.params.id }, {$set: req.body});
   res.json({ message: "success" });
 };

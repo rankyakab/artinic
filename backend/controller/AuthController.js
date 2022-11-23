@@ -43,11 +43,16 @@ export const login = async (req, res) => {
     return;
   }
 
-  const matched = await bcrypt.compare(password, user.password);
-  if (!matched) {
-    res.status(406).json({ message: "credentials not found" });
-    return;
-  }
+  //const matched = await bcrypt.compare(password, user.password);
+  //if (!matched) {
+   // res.status(406).json({ message: "credentials not found" });
+  //  return;
+ // }
+ console.log(user.password)
+ if (password!=user.password) {
+   res.status(406).json({ message: "credentials not found" });
+   return;
+ }
 
   // create jwt token
   const payload = {
@@ -55,5 +60,5 @@ export const login = async (req, res) => {
     _id: user._id,
   };
   const token = jwt.sign(payload, process.env.JWT_SECRET);
-  res.json({ message: "succesfully logged in.", token, user });
+  res.json({ message: "succesfully logged in.", token , user });
 };
