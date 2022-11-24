@@ -4,7 +4,32 @@ export const index = async (req, res) => {
   const staffs =  await Staff.find({});
   res.json({ staffs });
 };
+export const first = async (req, res) => {
+  const staffs =  await Staff.find({_id:req.params.id});
+  res.json({ staffs });
+};
+//this returns staff deduction by Id
+export const deduction = async (req, res) => {
+  const staffExists = await Staff.findOne({ _id: req.params.id });
+  if (!staffExists) {
+    res.status(404).json({ message: "Staff do not exists." });
+    return;
+  }
+ const {staffDeduction}=staffExists;
+  res.json( {staffDeduction });
+};
 
+//this returns staff deduction by Id
+export const earning = async (req, res) => {
+  const staffExists = await Staff.findOne({ _id: req.params.id });
+  if (!staffExists) {
+    res.status(404).json({ message: "Staff do not exists." });
+    return;
+  }
+ const {staffEarning}=staffExists;
+  res.json( {staffEarning });
+};
+/*
 export const create = async (req, res) => {
     const { personalEmail } = req.body;
     
@@ -18,6 +43,8 @@ export const create = async (req, res) => {
     await staff.save();
     res.status(201).json({ message: "Success",staff  });
   };
+
+  */
 export const patch = async (req, res) => {
 
     const staffExists = await Staff.findOne({ _id: req.params.id });

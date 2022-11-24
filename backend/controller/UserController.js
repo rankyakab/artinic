@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import * as argon2 from "argon2";
 import User from "../models/User.js";
 
 export const index = async (req, res) => {
@@ -9,8 +9,21 @@ export const index = async (req, res) => {
 
 
 export const create = async (req, res) => {
-   
+    
+  let hashedPassword=""
     const { email, password, role, deletedAt } = req.body;
+    
+      hashedPassword = await argon2.hash(password);
+      
+    try {
+      if (await argon2.verify("$argon2id$v=19$m=65536,t=3,p=4$iNFpv+siRkWb+1xNdasEkA$yvMII9zv03BOeFLJt2eUcLWa9cLCNCQcDkiccKDeYWI", "akab")) {
+        console.log("password match");
+      } else {
+        console.log("password  do not match");
+      }
+    } catch (err) {
+      // internal failure
+    }
 
   const userExists = await User.findOne({ email });
   if (userExists) {
@@ -20,13 +33,14 @@ export const create = async (req, res) => {
 
   
  //const salt = await bcrypt.genSaltSync(10); 
- //const hashedPassword = await bcrypt.hashSync(password, salt);
- 
+// const hashedPassword = await bcrypt.hashSync(password, salt);
+
+
   
  const user = await new User({
   
   email,
-  password,
+  password:hashedPassword,
   role,
   deletedAt
  });
