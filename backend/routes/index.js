@@ -23,7 +23,7 @@ router.use("/employee_earning", EmployeeEarningApi);
 router.use("/staff", StaffApi);
 router.use("/auth", AuthApi);
 router.use("/circular", CircularApi);
-router.use("/user",auth, UserApi);
+router.use("/user",UserApi);
 router.use("/memo", MemoApi);
 router.use("/payroll", Payroll);
 export default router;
