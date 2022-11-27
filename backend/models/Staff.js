@@ -25,12 +25,13 @@ const staffSchema = new Schema(
               deductionName: { type: String, required: ["Middle name field is required"] },
               deductionAmount: { type: String, required: ["Home Address field is required"] },
        }],
-       staffEarning : [{
-        earningPeriod: { type: Date, default: new Date() },
-    earningType: { type: String, required: ["Deduction field is required"] },
-    earningName: { type: String, required: ["Middle name field is required"] },
-    earningAmount: { type: String, required: ["Home Address field is required"] },
- }],
+    staffEarning : [{
+                     earningPeriod: { type: Date, default: new Date() },
+                      earningType: { type: String, required: ["Deduction field is required"] },
+                      earningName: { type: String, required: ["Middle name field is required"] },
+                      earningAmount: { type: String, required: ["Home Address field is required"] },
+                    }],
+  
  isAuthenticated:{type:Boolean, default:false},
  password: { type: String, default:"password" },
     deletedT: { type: Date,}

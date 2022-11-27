@@ -5,10 +5,14 @@ import DeductionApi from "./DeductionApi.js";
 import EmployeeDeductionApi from "./EmployeeDeductionApi.js";
 import EmployeeEarningApi from "./EmployeeEarningApi.js";
 import CircularApi from "./CircularApi.js";
+import GroupApi from "./GroupApi.js";
 import UserApi from "./UserApi.js";
 import StaffApi from "./StaffApi.js";
 import MemoApi from "./MemoApi.js";
 import Payroll from "./PayrollApi.js";
+import VoucherApi from "./VoucherApi.js";
+
+import PayslipApi from "./PayslipApi.js";
 import Allowance from "./AllowanceApi.js";
 
 const router = Router();
@@ -23,7 +27,10 @@ router.use("/employee_earning", EmployeeEarningApi);
 router.use("/staff", StaffApi);
 router.use("/auth", AuthApi);
 router.use("/circular", CircularApi);
+router.use("/group", GroupApi);
 router.use("/user",UserApi);
 router.use("/memo", MemoApi);
+router.use("/voucher", VoucherApi);
+router.use("/payslip", PayslipApi);
 router.use("/payroll", Payroll);
 export default router;

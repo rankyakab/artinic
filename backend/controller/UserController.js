@@ -12,18 +12,13 @@ export const create = async (req, res) => {
     
   let hashedPassword=""
     const { email, password, role, deletedAt } = req.body;
+   try {
+    hashedPassword = await argon2.hash(password);
+   } catch (error) {
     
-      hashedPassword = await argon2.hash(password);
+   }
+     
       
-    try {
-      if (await argon2.verify("$argon2id$v=19$m=65536,t=3,p=4$iNFpv+siRkWb+1xNdasEkA$yvMII9zv03BOeFLJt2eUcLWa9cLCNCQcDkiccKDeYWI", "akab")) {
-        console.log("password match");
-      } else {
-        console.log("password  do not match");
-      }
-    } catch (err) {
-      // internal failure
-    }
 
   const userExists = await User.findOne({ email });
   if (userExists) {

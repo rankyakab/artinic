@@ -6,7 +6,7 @@ export const index = async (req, res) => {
   const memos =  await Memo.find({});
   const count = await Memo.countDocuments();
   if(count > 0){
-  res.status(200).json({ code: 200, status: "success", message: "Records successfully retrieved", records: count, memos });
+  res.status(201).json({ code: 201, status: "success", message: "Records successfully retrieved", records: count, memos });
 }else{
   res.status(400).json({ code: 400, status: "Error", message: "No record found"});
 }
@@ -16,11 +16,11 @@ export const index = async (req, res) => {
 //add new memo record to the system
 export const create = async (req, res) => {
   //const { memoType } = req.body;
-  const { memoDate, refId, memoTitle, memoBody, memoType, activities } = req.body;
+  const { memoDate, refId, memoTitle, memoBody, attachment, attachemntType, memoType, completion, activities } = req.body;
   if(!memoDate){
-    res.status(400).json({ code: 400, status: "Error", message: "Memo Date is required"});
+    res.status(400).json({ code: 400, status: "Error", message: "Memo date is required"});
   }else if(!refId){
-    res.status(400).json({ code: 400, status: "Error", message: "Reference ID is required"});
+    res.status(400).json({ code: 400, status: "Error", message: "Memo reference id is required"});
   }else if(!memoTitle){
     res.status(400).json({ code: 400, status: "Error", message: "Memo title is required"});
   }else if(!memoBody){
@@ -28,30 +28,28 @@ export const create = async (req, res) => {
   }else if(!memoType){
     res.status(400).json({ code: 400, status: "Error", message: "Memo type is required"});
   }else if(!activities || activities.length == 0){
-    res.status(400).json({ code: 400, status: "Error", message: "Memo recipient is required"});
+    res.status(400).json({ code: 400, status: "Error", message: "Memo recipient details are required"});
   }else{
     
     var ownerId = "detgd00ughgfdsf007655";//req.user;
     const memo = await Memo({
-      memoDate : req.body.memoDate,
-      refId : req.body.refId,
-      memoTitle : req.body.memoTitle,
-      memoBody : req.body.memoBody,
-      ownerId : ownerId,
-      attachment : req.body.attachment,
-      attachemntType : req.body.attachemntType,
-      memoType : req.body.memoType,
-      completion : req.body.completion,
-      activities : req.body.activities
+          memoDate : req.body.memoDate,
+          refId : req.body.refId,
+          memoTitle : req.body.memoTitle,
+          memoBody : req.body.memoBody,
+          ownerId : ownerId,
+          attachment : req.body.attachment,
+          attachemntType : req.body.attachemntType,
+          memoType : req.body.memoType,
+          completion : req.body.completion,
+          activities : req.body.activities
     });
     var savememo = await memo.save();
 
     if(savememo){
 
-      res.status(201).json({ code: 201, status: "success", message: "New memo successfully created", savememo  });
+      res.status(200).json({ code: 200, status: "success", message: "New memo successfully created", memo  });
       
-    }else{
-      res.status(400).json({ code: 400, status: "Error", message: "Memo creation failed."});
     }
 
   } 
@@ -114,3 +112,9 @@ export const create = async (req, res) => {
         res.status(404).json({ code: 404, status: "error", message: "No record found" });
       }
     };
+
+
+
+    
+  
+  
