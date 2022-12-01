@@ -14,6 +14,7 @@ router.post(
     UserController.create
   );
 router.delete("/:id", UserController.destroy);
+router.delete("/delete/:id", UserController.destroyPatch);
 router.patch("/:id", UserController.patch);
   
 export default router;

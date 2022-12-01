@@ -20,7 +20,7 @@ export const register = async (req, res) => {
 
   const userExists = await Staff.findOne({ personalEmail });
   if (userExists) {
-    res.status(406).json({ message: "Staff already exists." });
+    res.status(406).json({ message: "User already exists." });
     return;
   }
   let hashedPassword="";

@@ -11,7 +11,7 @@ export const index = async (req, res) => {
 export const create = async (req, res) => {
     
   let hashedPassword=""
-    const { email, password, role, deletedAt } = req.body;
+    const { email, password, role } = req.body;
    try {
     hashedPassword = await argon2.hash(password);
    } catch (error) {
@@ -36,8 +36,7 @@ export const create = async (req, res) => {
   
   email,
   password:hashedPassword,
-  role,
-  deletedAt
+  role
  });
   await user.save();
   //res.status(201).json({ message: "user is created",user });
@@ -58,6 +57,16 @@ export const destroy = async (req, res) => {
   await User.findOneAndDelete({ _id: req.params.id });
   res.json({ message: "success" });
 };
+export const destroyPatch = async(req, res)=>{
+  const userExists = await User.findOne({ _id: req.params.id });
+  if (!userExists) {
+    res.status(404).json({ message: "User do not exists." });
+    return;
+  }
+
+  await User.updateOne({ _id: req.params.id }, {$set:{deletedAt: new Date()}});
+  res.json({ message: "success" });
+}
 
 export const patch = async (req, res) => {
 

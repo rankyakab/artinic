@@ -8,35 +8,19 @@ export const first = async (req, res) => {
   const staffs =  await Staff.find({_id:req.params.id});
   res.json({ staffs });
 };
-//this returns staff deduction by Id
-export const deduction = async (req, res) => {
-  const staffExists = await Staff.findOne({ _id: req.params.id });
-  if (!staffExists) {
-    res.status(404).json({ message: "Staff do not exists." });
-    return;
-  }
- const {staffDeduction}=staffExists;
-  res.json( {staffDeduction });
-};
 
-//this returns staff deduction by Id
-export const earning = async (req, res) => {
-  const staffExists = await Staff.findOne({ _id: req.params.id });
-  if (!staffExists) {
-    res.status(404).json({ message: "Staff do not exists." });
-    return;
-  }
- const {staffEarning}=staffExists;
-  res.json( {staffEarning });
-};
-/*
+
 export const create = async (req, res) => {
-    const { personalEmail } = req.body;
+    const { personalEmail, staffNumber } = req.body;
     
 
-  const staffExists = await Staff.findOne({ personalEmail });
+  const staffExists = await Staff.findOne({
+    "personalEmail" : { "$in": personalEmail },
+    "staffNumber" : { "$in": staffNumber }
+});
   if (staffExists) {
     res.status(406).json({ message: "Staff already exists." });
+    console.log(staffExists);
     return;
   }
     const staff = await new Staff(req.body);
@@ -44,7 +28,7 @@ export const create = async (req, res) => {
     res.status(201).json({ message: "Success",staff  });
   };
 
-  */
+  
 export const patch = async (req, res) => {
 
     const staffExists = await Staff.findOne({ _id: req.params.id });
@@ -68,7 +52,7 @@ export const destroy = async (req, res) => {
   }
  //if user is found
  staffExists.isDeleted=true;
- staffExists.deletedT=new Date() ;
+ staffExists.deletedAt=new Date() ;
   await  Staff.updateOne({ _id: req.params.id }, {$set: staffExists});
   res.json({ message: "success" , staff: staffExists });
 };

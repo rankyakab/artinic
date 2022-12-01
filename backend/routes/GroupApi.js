@@ -8,11 +8,7 @@ router.get(
   
   GroupController.index
 );
-router.get(
-    "/hello",
-    
-    GroupController.index
-  );
+
 router.get(
   "/:id",
   
