@@ -1,4 +1,5 @@
 import * as argon2 from "argon2";
+
 import User from "../models/User.js";
 
 export const index = async (req, res) => {
@@ -6,11 +7,20 @@ export const index = async (req, res) => {
   res.json({ users });
 };
 
+export const count = async (req, res) => {
+
+  
+ const userCount= await User.count();
+  //res.status(201).json({ message: "user is created",user });
+  res.status(201).json({ message: "success",userCount });
+
+};
+
 
 
 export const create = async (req, res) => {
     
-  let hashedPassword=""
+  let hashedPassword="";
     const { email, password, role } = req.body;
    try {
     hashedPassword = await argon2.hash(password);
@@ -54,8 +64,8 @@ export const destroy = async (req, res) => {
     return;
   }
  //if user is found
-  await User.findOneAndDelete({ _id: req.params.id });
-  res.json({ message: "success" });
+ const us = await User.findOneAndDelete({ _id: req.params.id });
+  res.json({ message: "success", us });
 };
 export const destroyPatch = async(req, res)=>{
   const userExists = await User.findOne({ _id: req.params.id });

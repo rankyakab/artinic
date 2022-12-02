@@ -9,6 +9,11 @@ router.get(
   StaffController.index
 );
 router.get(
+  "/count",
+  
+  StaffController.index
+);
+router.get(
   "/:id",
   
   StaffController.first

@@ -15,8 +15,11 @@ userSchema.pre('find', function() {
   this.where({ deletedAt: null });
 });
 
+
+
+
 userSchema.pre('findOne', function() {
-  this.where({ isDeleted: null });
+ this.where({ isDeleted: null });
 });
 
 export default new mongoose.model("User", userSchema);

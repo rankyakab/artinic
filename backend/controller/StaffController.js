@@ -4,6 +4,16 @@ export const index = async (req, res) => {
   const staffs =  await Staff.find({});
   res.json({ staffs });
 };
+export const count = async (req, res) => {
+
+  
+  const staffCount= await Staff.count();
+   //res.status(201).json({ message: "user is created",user });
+   res.status(201).json({ message: "success", staffCount });
+ 
+ };
+ 
+
 export const first = async (req, res) => {
   const staffs =  await Staff.find({_id:req.params.id});
   res.json({ staffs });

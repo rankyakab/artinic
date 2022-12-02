@@ -7,6 +7,8 @@ export const index = async (req, res) => {
 
 
 
+
+
 export const create = async (req, res) => {
     const {staffId,positionId,jobRole,effectiveDate,expiringDate,deletedAt}=req.body;
   
