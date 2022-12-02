@@ -14,15 +14,16 @@ export default (passport) => {
   passport.use(
     new JwtStrategy(opts, function (jwt_payload, done) {
      
-      User.findOne( {_id:jwt_payload._id}, function (err, user) {
+      User.findOne({ '_id': jwt_payload._id },'email password' , function (err, user) {
         if (err) {
           return done(err, false);
         }
         if (user) {
+        //  console.log(user);
           return done(null, user);
         } else {
-          console.log(jwt_payload._id);
-          return done(null, true);
+          console.log("user was not returned");
+          return done(null, false);
         
           // or you could create a new account
         }
