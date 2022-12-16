@@ -11,7 +11,7 @@ router.get(
 router.get(
   "/count",
   
-  StaffController.index
+  StaffController.count
 );
 router.get(
   "/:id",

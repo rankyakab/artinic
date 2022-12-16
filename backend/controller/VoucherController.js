@@ -30,7 +30,7 @@ export const create = async (req, res) => {
     res.status(400).json({ code: 400, status: "Error", message: "Voucher sheet details are required"});
   }else{
     
-    var preparedBy = "detgd00ughgfdsf007655";//req.user;
+    var preparedBy = req.user._id;
     const voucher = await Voucher({
           preparedBy : preparedBy,
           subject : req.body.subject,

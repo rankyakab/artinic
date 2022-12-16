@@ -31,7 +31,7 @@ export const create = async (req, res) => {
     res.status(400).json({ code: 400, status: "Error", message: "Memo recipient is required"});
   }else{
     
-    var ownerId = "detgd00ughgfdsf007655";//req.user;
+    var ownerId = req.user._id;
     const memo = await Memo({
       memoDate : req.body.memoDate,
       refId : req.body.refId,

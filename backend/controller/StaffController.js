@@ -2,6 +2,7 @@ import Staff from "../models/Staff.js";
 
 export const index = async (req, res) => {
   const staffs =  await Staff.find({});
+  console.log(req.user._id)
   res.json({ staffs });
 };
 export const count = async (req, res) => {
@@ -15,7 +16,7 @@ export const count = async (req, res) => {
  
 
 export const first = async (req, res) => {
-  const staffs =  await Staff.find({_id:req.params.id});
+  const staffs =  await Staff.findOne({"_id":req.params.id}); 
   res.json({ staffs });
 };
 

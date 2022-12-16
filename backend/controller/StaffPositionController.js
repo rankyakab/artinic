@@ -1,4 +1,4 @@
-import StaffPositionSchema from "../models/staffPosition.js";
+import StaffPositionSchema from "../models/StaffPosition.js";
 
 export const index = async (req, res) => {
   const staffPosition =  await StaffPositionSchema.find({});
