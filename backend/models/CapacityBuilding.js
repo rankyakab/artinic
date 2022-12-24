@@ -8,7 +8,7 @@ const capacityBuildingSchema = new Schema(
     trainingType: { type: String,  required: ["Training type is required"] },
     duration: { type: Number,  required: ["Training duration is required"] },
     trainingMode: {type: String,  required: ["Training mode is required"] },
-    status: {type: String,  default:"To-do" },
+    status: {type: String,  default:"To-do" }, 
     
   },
   { timestamps: true }

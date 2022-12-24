@@ -2,19 +2,19 @@ import {useState} from "react";
 
 function App() {
  const [form, setForm] = useState({ 
- "userId": "637cdc5c4f83f8f717775f63",
- "staffNo":"gekdu123",
- "firstName": "ola ",
- "lastName": "benji",
- "middleName": "benson",
- "homeAddress": "yola",
- "phoneNumber": "+2348134005655",
- "gender": "male",
- "personalEmail": "rankihddddhhhhhb@gmail.com",
- "ipPhone": "ueeheh",
- "employmentType": "Permanent staff",
- "employmentDate": "2022-11-27T21:23:07.639Z",
- "staffPositionId": "637d334eee0babe519637dcd"
+ userId:"637cdc5c4f83f8f717775f63",
+ staffNo:"gekdu123",
+ firstName:"ola ",
+ lastName:"benji",
+ middleName:"benson",
+ homeAddress:"yola",
+ phoneNumber:"+2348134005655",
+ gender: "male",
+ personalEmail:"rankihddddhhhhhb@gmail.com",
+ ipPhone:"ueeheh",
+ employmentType:"Permanent staff",
+ employmentDate:"2022-11-27T21:23:07.639Z",
+ staffPositionId:"637d334eee0babe519637dcd"
 })
  async function   handleSubmit  (e){
   e.preventDefault();

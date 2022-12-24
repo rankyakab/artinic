@@ -1,7 +1,7 @@
 import { startSession } from "mongoose";
 import CapacityBuilding from "../models/CapacityBuilding.js";
 
-
+ 
 export const create = async (req, res) => {
  
     const { trainingDescription, startDate ,trainingType,duration,trainingMode,status} = req.body;

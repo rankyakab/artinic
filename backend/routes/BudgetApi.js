@@ -7,10 +7,16 @@ router.get(
     
     BudgetController.index
   );
+  router.delete("/:id", BudgetController.destroy);
   router.get(
     "/annual",
     
     BudgetController.annual
+  );
+  router.get(
+    "/actual",
+    
+    BudgetController.actual
   );
   
 router.post(
@@ -18,7 +24,7 @@ router.post(
   
   BudgetController.create
 );
-
+router.patch("/:id", BudgetController.patch);
 
 
 export default router;
